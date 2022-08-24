@@ -26,6 +26,11 @@
     "autoload": {
         "psr-4": {"yii2tech\\selfupdate\\": "src"}
     },
+    "autoload-dev": {
+        "psr-4": {
+            "yii2tech\\tests\\unit\\selfupdate\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

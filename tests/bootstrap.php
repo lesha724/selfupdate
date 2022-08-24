@@ -11,7 +11,5 @@ $_SERVER['SCRIPT_FILENAME'] = __FILE__;
 require_once(__DIR__ . '/../vendor/autoload.php');
 require_once(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
-Yii::setAlias('@yii2tech/tests/unit/selfupdate', __DIR__);
-Yii::setAlias('@yii2tech/selfupdate', dirname(__DIR__) . '/src');
-
-require_once(__DIR__ . '/compatibility.php');
+Yii::setAlias('@lesha724/tests/unit/selfupdate', __DIR__);
+Yii::setAlias('@lesha724/selfupdate', dirname(__DIR__) . '/src');

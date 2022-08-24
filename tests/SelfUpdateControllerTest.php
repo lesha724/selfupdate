@@ -32,7 +32,7 @@ class SelfUpdateControllerTest extends TestCase
      */
     protected function getTestFilePath()
     {
-        $filePath = Yii::getAlias('@yii2tech/tests/unit/selfupdate/runtime') . DIRECTORY_SEPARATOR . getmypid();
+        $filePath = Yii::getAlias('@lesha724/tests/unit/selfupdate/runtime') . DIRECTORY_SEPARATOR . getmypid();
         return $filePath;
     }
 

@@ -36,7 +36,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             'vendorPath' => $this->getVendorPath(),
             'components' => [
                 'mutex' => [
-                    'class' => FileMutex::className()
+                    'class' => FileMutex::class
                 ],
             ],
         ], $config));

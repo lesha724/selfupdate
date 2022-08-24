@@ -10,6 +10,7 @@ namespace yii2tech\selfupdate;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\caching\Cache;
+use yii\caching\CacheInterface;
 use yii\console\Controller;
 use Yii;
 use yii\console\ExitCode;
@@ -296,7 +297,7 @@ class SelfUpdateController extends Controller
                 return ExitCode::OK;
             }
         }
-        copy(Yii::getAlias('@yii2tech/selfupdate/views/selfUpdateConfig.php'), $fileName);
+        copy(Yii::getAlias('@lesha724/selfupdate/views/selfUpdateConfig.php'), $fileName);
         $this->stdout("Configuration file template created at '{$fileName}' . \n\n", Console::FG_GREEN);
         return ExitCode::OK;
     }
@@ -307,7 +308,7 @@ class SelfUpdateController extends Controller
      */
     protected function acquireMutex()
     {
-        $this->mutex = Instance::ensure($this->mutex, Mutex::className());
+        $this->mutex = Instance::ensure($this->mutex, Mutex::class);
         return $this->mutex->acquire($this->composeMutexName());
     }
 
@@ -398,7 +399,7 @@ class SelfUpdateController extends Controller
     {
         if (!empty($this->cache)) {
             foreach ((array)$this->cache as $cache) {
-                $cache = Instance::ensure($cache, Cache::className());
+                $cache = Instance::ensure($cache, CacheInterface::class);
                 $cache->flush();
             }
             $this->log('Cache flushed.');
