@@ -169,6 +169,12 @@ class SelfUpdateController extends Controller
      */
     public $composerOptions = [];
     /**
+     * @var string path to the 'php' bin command.
+     * By default simple 'php' is used, assuming it available as global shell command.
+     */
+    public $phpBinPath = 'php';
+
+    /**
      * @var string path to the 'composer' bin command.
      * By default simple 'composer' is used, assuming it available as global shell command.
      * Path alias can be used here. For example: '@app/composer.phar'.
@@ -461,8 +467,9 @@ class SelfUpdateController extends Controller
     {
         $options = Shell::buildOptions(array_merge($this->composerOptions, ['no-interaction']));
         foreach ($this->composerRootPaths as $path) {
-            $this->execShellCommand('(cd {composerRoot} && {composer} install ' . $options . ')', [
+            $this->execShellCommand('(cd {composerRoot} && {php} {composer} install ' . $options . ')', [
                 '{composerRoot}' => Yii::getAlias($path),
+                '{php}' => Yii::getAlias($this->phpBinPath),
                 '{composer}' => Yii::getAlias($this->composerBinPath),
             ]);
         }
