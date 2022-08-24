@@ -39,7 +39,7 @@ class Git extends VersionControlSystem
      */
     public function getCurrentBranch($projectRoot)
     {
-        $result = Shell::execute('(cd {projectRoot}; {binPath} branch)', [
+        $result = Shell::execute('(cd {projectRoot} && {binPath} branch)', [
             '{binPath}' => $this->binPath,
             '{projectRoot}' => $projectRoot,
         ]);
@@ -66,10 +66,10 @@ class Git extends VersionControlSystem
             '{branch}' => $this->getCurrentBranch($projectRoot),
         ];
 
-        $fetchResult = Shell::execute('(cd {projectRoot}; {binPath} fetch {remote})', $placeholders);
+        $fetchResult = Shell::execute('(cd {projectRoot} && {binPath} fetch {remote})', $placeholders);
         $log = $fetchResult->toString() . "\n";
 
-        $result = Shell::execute('(cd {projectRoot}; {binPath} diff --numstat HEAD {remote}/{branch})', $placeholders);
+        $result = Shell::execute('(cd {projectRoot} && {binPath} diff --numstat HEAD {remote}/{branch})', $placeholders);
         $log .= $result->toString();
         return ($result->isOk() && !$result->isOutputEmpty());
     }
@@ -82,7 +82,7 @@ class Git extends VersionControlSystem
      */
     public function applyRemoteChanges($projectRoot, &$log = null)
     {
-        $result = Shell::execute('(cd {projectRoot}; {binPath} merge {remote}/{branch})', [
+        $result = Shell::execute('(cd {projectRoot} && {binPath} merge {remote}/{branch})', [
             '{binPath}' => $this->binPath,
             '{projectRoot}' => $projectRoot,
             '{remote}' => $this->remoteName,

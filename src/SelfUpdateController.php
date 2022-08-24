@@ -460,7 +460,7 @@ class SelfUpdateController extends Controller
     {
         $options = Shell::buildOptions(array_merge($this->composerOptions, ['no-interaction']));
         foreach ($this->composerRootPaths as $path) {
-            $this->execShellCommand('(cd {composerRoot}; {composer} install ' . $options . ')', [
+            $this->execShellCommand('(cd {composerRoot} && {composer} install ' . $options . ')', [
                 '{composerRoot}' => Yii::getAlias($path),
                 '{composer}' => Yii::getAlias($this->composerBinPath),
             ]);

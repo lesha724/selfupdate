@@ -32,7 +32,7 @@ class Mercurial extends VersionControlSystem
      */
     public function getCurrentBranch($projectRoot)
     {
-        $result = Shell::execute('(cd {projectRoot}; {binPath} branch)', [
+        $result = Shell::execute('(cd {projectRoot} && {binPath} branch)', [
             '{binPath}' => $this->binPath,
             '{projectRoot}' => $projectRoot,
         ]);
@@ -47,7 +47,7 @@ class Mercurial extends VersionControlSystem
      */
     public function hasRemoteChanges($projectRoot, &$log = null)
     {
-        $result = Shell::execute("(cd {projectRoot}; {binPath} incoming -b {branch} --newest-first --limit 1)", [
+        $result = Shell::execute("(cd {projectRoot} && {binPath} incoming -b {branch} --newest-first --limit 1)", [
             '{binPath}' => $this->binPath,
             '{projectRoot}' => $projectRoot,
             '{branch}' => $this->getCurrentBranch($projectRoot),
@@ -64,7 +64,7 @@ class Mercurial extends VersionControlSystem
      */
     public function applyRemoteChanges($projectRoot, &$log = null)
     {
-        $result = Shell::execute('(cd {projectRoot}; {binPath} pull -b {branch} -u)', [
+        $result = Shell::execute('(cd {projectRoot} && {binPath} pull -b {branch} -u)', [
             '{binPath}' => $this->binPath,
             '{projectRoot}' => $projectRoot,
             '{branch}' => $this->getCurrentBranch($projectRoot),
