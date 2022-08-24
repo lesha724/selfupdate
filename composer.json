@@ -1,15 +1,9 @@
 {
-    "name": "yii2tech/selfupdate",
+    "name": "lesha724/selfupdate",
     "description": "Basic extension for the Yii2 project self-update from VCS",
     "keywords": ["yii2", "selfupdate", "update", "deployment", "continuous", "integration", "VCS", "GIT", "Mercurial"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yii2tech/selfupdate/issues",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "https://github.com/yii2tech/selfupdate/wiki",
-        "source": "https://github.com/yii2tech/selfupdate"
-    },
     "authors": [
         {
             "name": "Paul Klimov",
